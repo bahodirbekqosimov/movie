@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="uz">
+<head>
+{% load static %}
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Movie Detail</title>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+<!-- <link rel="stylesheet" href="style.css"> -->
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div class="brand"><div class="logo">OM</div><div><h2 style="margin:0">Movie Title</h2><div style="color:var(--muted);font-size:13px">2024 · Drama</div></div></div>
+<div class="nav"><a href="/" class="small-btn">Ro'yxat</a></div>
+</div>
+
+
+<div class="detail-wrap">
+<img class="poster-large" src="{{movi.image.url}}" alt="Poster">
+
+
+<div>
+<h3>{{ movi.title}}</h3>
+<p style="color:var(--muted)">{{ movi.desc}}</p>
+
+
+<div class="attr"><strong>Rejissyor:</strong> {{movi.rejissyor}}</div>
+<div class="attr"><strong>Muddat:</strong> {{movi.time}}</div>
+
+
+<div style="margin-top:18px">
+<a href="update.html" class="small-btn">Edit</a>
+<a href="delete.html" class="small-btn">Delete</a>
+</div>
+</div>
+</div>
+
+
+</div>
+</body>
+</html>

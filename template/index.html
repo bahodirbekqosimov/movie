@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+{% load static %}
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Online Movies — Ro'yxat</title>
+<link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+<div class="container">
+<div class="header">
+<div class="brand">
+<div class="logo">OM</div>
+<div>
+<h2 style="margin:0">Online Movies</h2>
+<div style="color:var(--muted);font-size:13px">Sizning sevimli filmlaringiz</div>
+</div>
+</div>
+<div class="nav">
+<a class="button" href="movie/create">+ Movie qo'shish</a>
+</div>
+</div>
+
+
+
+<div class="grid">
+<!-- Bitta film kartasi namunasi; backend bilan dinamik tarzda takrorlanadi -->
+ {% for movi in movies %}
+<div class="card">
+<img class="poster" src="{{movi.image.url}}" alt="{{movi.title}}">
+<h3>{{ movi.title }}</h3>
+<div class="meta">{{movi.year}} · {{movi.category}} · {{movi.time}}</div>
+<p style="color:var(--muted);font-size:14px">{{movi.desc | slice:":100"}}</p>
+<div class="actions">
+<a class="small-btn" href="movi/{{movi.id}}">View</a>
+<a class="small-btn" href="update.html">Edit</a>
+<a class="small-btn" href="movi/delete/{{movi.id}}">Delete</a>
+
+</div>
+
+</div>
+{% endfor %}
+
+
+<!-- Qo'shimcha kartalar... -->
+
+
+</div>
+
+
+<div class="footer">© Online Movies — barcha huquqlar himoyalangan</div>
+</div>
+</body>
+</html>
