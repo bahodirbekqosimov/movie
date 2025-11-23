@@ -22,7 +22,7 @@ def detail(req,id):
     
 
 
-# def delete(req,id):
+
 
 
 
@@ -34,12 +34,17 @@ def create(req):
     
     elif req.method == 'POST':
         
-        # print(req.title)
+       
         title = req.POST.get("title")
         year = req.POST.get("year")
         category = req.POST.get("genre")
         desc = req.POST.get("desc")
-        img = req.POST.get("")
+        img = req.FILES.get("image")
+        rejissyor = req.POST.get("rej")
+        time = req.POST.get("time")
+        
+        
+        Movi.objects.create(title = title, year = int(year), category = category, desc = desc,image = img, rejissyor = rejissyor, time = time)
         
         
         
@@ -50,7 +55,59 @@ def create(req):
     
     
     
-    # Movi.objects.create(
-    #     title = ""
-    # )
+def delete(req,id):
     
+    if req.method == "POST":
+        Movi.objects.get(id = id).delete()
+        
+        return redirect("/")
+    if req.method == "GET":
+        
+        movie = Movi.objects.get(id = id)
+        
+        data = {
+            "movie": movie
+        }
+        
+        return render(req,'delete.html',context=data)
+        
+
+
+def update(req,id):
+    if req.method == "GET":
+        
+        data = {
+            "movie": Movi.objects.get(id = id)
+        }
+        return render(req, "update.html", context=data)
+    
+    if req.method == "POST":
+        
+        title =req.POST.get("title")
+        year =req.POST.get("year")
+        category = req.POST.get("category")
+        desc = req.POST.get("desc")
+        time = req.POST.get("time")
+        
+        image = req.FILES.get("image")
+        
+        
+        movie = Movi.objects.get(id= id)
+        
+        if title:
+            movie.title= title
+        if year:
+            movie.year = year
+        if desc:
+            movie.desc = desc
+        if category:
+            movie.category = category
+        if image:
+            movie.image = image
+        if time:
+            movie.time = time
+        
+        movie.save()
+        
+        return redirect("/")
+        

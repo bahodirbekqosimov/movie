@@ -2,10 +2,12 @@
 <html lang="uz">
 <head>
 <meta charset="utf-8">
-{% load static %}
+
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Online Movies — Ro'yxat</title>
-<link rel="stylesheet" href="{% static 'style.css' %}">
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css'%}">
 </head>
 <body>
 <div class="container">
@@ -34,8 +36,8 @@
 <p style="color:var(--muted);font-size:14px">{{movi.desc | slice:":100"}}</p>
 <div class="actions">
 <a class="small-btn" href="movi/{{movi.id}}">View</a>
-<a class="small-btn" href="update.html">Edit</a>
-<a class="small-btn" href="movi/delete/{{movi.id}}">Delete</a>
+<a class="small-btn" href="{% url 'update' movi.id %}">Edit</a>
+<a class="small-btn" href="{% url 'delete' movi.id %}">Delete</a>
 
 </div>
 
